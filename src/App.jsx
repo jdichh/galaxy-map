@@ -6,13 +6,14 @@ import { OrbitControls, Stats } from "@react-three/drei";
 import * as THREE from "three";
 import BackgroundStars from "./components/BackgroundStars";
 import WebGL from "three/addons/capabilities/WebGL.js";
+import Galaxy from "./components/Galaxy";
 
 const App = () => {
-  const FOV = 75;
+  const FOV = 30;
   const NEAR_CLIP = 0.1;
   const FAR_CLIP = 300;
-  const CAM_POSTIION = [0, 10, 30];
-  
+  const CAM_POSTIION = [10, 70, 40];
+
   const BG_COLOR = "#000000"
 
   const textureLoader = new TextureLoader();
@@ -45,7 +46,8 @@ const App = () => {
           style={{ background: BG_COLOR }}
         >
           <BackgroundStars parameters={parameters} shape={shape} />
-          <OrbitControls />
+          <Galaxy parameters={parameters} shape={shape} />
+          <OrbitControls/>
         </Canvas>
         <Stats />
       </div>

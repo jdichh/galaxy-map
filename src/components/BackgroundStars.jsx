@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react";
-import { useThree } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { parameters } from "../utils/parameters.js";
 
 function BackgroundStars({ shape }) {
   const { scene } = useThree();
-  let starsRef = useRef();
-  let starsGeometry = useRef();
-  let starsMaterial = useRef();
+  const starsRef = useRef();
+  const starsGeometryRef = useRef();
+  const starsMaterialRef = useRef();
 
   useEffect(() => {
-    starsGeometry.current = new THREE.BufferGeometry();
+    starsGeometryRef.current = new THREE.BufferGeometry();
     const starsPositions = new Float32Array(parameters.bgStarCount * 3);
     const starsColors = new Float32Array(parameters.bgStarCount * 3);
 
@@ -26,10 +26,10 @@ function BackgroundStars({ shape }) {
       randomColor.toArray(starsColors, j * 3);
     }
 
-    starsGeometry.current.setAttribute("position", new THREE.BufferAttribute(starsPositions, 3));
-    starsGeometry.current.setAttribute("color", new THREE.BufferAttribute(starsColors, 3));
+    starsGeometryRef.current.setAttribute("position", new THREE.BufferAttribute(starsPositions, 3));
+    starsGeometryRef.current.setAttribute("color", new THREE.BufferAttribute(starsColors, 3));
 
-    starsMaterial.current = new THREE.PointsMaterial({
+    starsMaterialRef.current = new THREE.PointsMaterial({
       size: parameters.bgStarSize,
       depthWrite: false,
       sizeAttenuation: true,
@@ -40,17 +40,24 @@ function BackgroundStars({ shape }) {
     });
 
     starsRef.current = new THREE.Points(
-      starsGeometry.current,
-      starsMaterial.current
+      starsGeometryRef.current,
+      starsMaterialRef.current
     );
     scene.add(starsRef.current);
 
     return () => {
-      starsGeometry.dispose();
-      starsMaterial.dispose();
+      starsGeometryRef.dispose();
+      starsMaterialRef.dispose();
       scene.remove(starsRef.current);
     };
   }, [shape, scene]);
+
+  useFrame(() => {
+    if (starsRef.current) {
+      starsRef.current.rotation.x += 0.0001;
+      starsRef.current.rotation.y += 0.0003;
+    }
+  });
 
   return null;
 }
