@@ -1,0 +1,15 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.5);
+  height: 100vw;
+}
+
+#root,
+#canvas-container {
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+}
