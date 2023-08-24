@@ -1,9 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { parameters } from "../utils/parameters.js";
 
-function BackgroundStars({ shape }) {
+function BackgroundStars({ parameters, shape }) {
   const { scene } = useThree();
   const starsRef = useRef();
   const starsGeometryRef = useRef();
@@ -20,14 +19,23 @@ function BackgroundStars({ shape }) {
       starsPositions[j * 3 + 2] = (Math.random() - 0.5) * 100;
 
       const randomColor = new THREE.Color();
-      randomColor.r = Math.random() * parameters.bgStarColorMax + parameters.bgStarColorMin;
-      randomColor.g = Math.random() * parameters.bgStarColorMax + parameters.bgStarColorMin;
-      randomColor.b = Math.random() * parameters.bgStarColorMax + parameters.bgStarColorMin;
+      randomColor.r =
+        Math.random() * parameters.bgStarColorMax + parameters.bgStarColorMin;
+      randomColor.g =
+        Math.random() * parameters.bgStarColorMax + parameters.bgStarColorMin;
+      randomColor.b =
+        Math.random() * parameters.bgStarColorMax + parameters.bgStarColorMin;
       randomColor.toArray(starsColors, j * 3);
     }
 
-    starsGeometryRef.current.setAttribute("position", new THREE.BufferAttribute(starsPositions, 3));
-    starsGeometryRef.current.setAttribute("color", new THREE.BufferAttribute(starsColors, 3));
+    starsGeometryRef.current.setAttribute(
+      "position",
+      new THREE.BufferAttribute(starsPositions, 3)
+    );
+    starsGeometryRef.current.setAttribute(
+      "color",
+      new THREE.BufferAttribute(starsColors, 3)
+    );
 
     starsMaterialRef.current = new THREE.PointsMaterial({
       size: parameters.bgStarSize,
@@ -55,7 +63,7 @@ function BackgroundStars({ shape }) {
   useFrame(() => {
     if (starsRef.current) {
       starsRef.current.rotation.x += 0.0001;
-      starsRef.current.rotation.y += 0.0003;
+      starsRef.current.rotation.y += 0.00025;
     }
   });
 
