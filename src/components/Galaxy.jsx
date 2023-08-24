@@ -77,6 +77,7 @@ function Galaxy({ parameters, shape }) {
       galaxyGeometryRef.current,
       galaxyMaterialRef.current
     );
+    galaxyRef.current.position.z = -0.75;
     galaxyRef.current.position.y = 3.25;
     scene.add(galaxyRef.current);
    

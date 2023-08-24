@@ -9,10 +9,10 @@ import Galaxy from "./components/Galaxy";
 import MusicPlayer from "./components/MusicPlayer";
 
 const App = () => {
-  const FOV = 22;
+  const FOV = 27;
   const NEAR_CLIP = 0.1;
   const FAR_CLIP = 400;
-  const CAM_POSTIION = [0, 50, 75];
+  const CAM_POSTIION = [0, 90, 50];
 
   const BG_COLOR = "#000000";
 
@@ -37,7 +37,7 @@ const App = () => {
           }}
           gl={{
             toneMapping: THREE.ACESFilmicToneMapping,
-            toneMappingExposure: 2.5,
+            toneMappingExposure: 2,
             dpr: Math.min(window.devicePixelRatio, 2),
           }}
           style={{ background: BG_COLOR }}

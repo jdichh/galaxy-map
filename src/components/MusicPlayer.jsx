@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const musicFile = "./heleus.mp3";
 
 const MusicPlayer = () => {
-  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [audio, setAudio] = useState(null);
   const [volume, setVolume] = useState(0.3);
 
