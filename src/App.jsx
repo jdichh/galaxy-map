@@ -6,12 +6,13 @@ import * as THREE from "three";
 import BackgroundStars from "./components/BackgroundStars";
 import WebGL from "three/addons/capabilities/WebGL.js";
 import Galaxy from "./components/Galaxy";
+import MusicPlayer from "./components/MusicPlayer";
 
 const App = () => {
   const FOV = 22;
   const NEAR_CLIP = 0.1;
   const FAR_CLIP = 400;
-  const CAM_POSTIION = [0, 50, 80];
+  const CAM_POSTIION = [0, 50, 75];
 
   const BG_COLOR = "#000000";
 
@@ -36,7 +37,7 @@ const App = () => {
           }}
           gl={{
             toneMapping: THREE.ACESFilmicToneMapping,
-            toneMappingExposure: 2,
+            toneMappingExposure: 2.5,
             dpr: Math.min(window.devicePixelRatio, 2),
           }}
           style={{ background: BG_COLOR }}
@@ -44,6 +45,7 @@ const App = () => {
           <BackgroundStars parameters={parameters} shape={shape} />
           <Galaxy parameters={parameters} shape={shape} />
         </Canvas>
+        <MusicPlayer/>
       </div>
     </>
   );

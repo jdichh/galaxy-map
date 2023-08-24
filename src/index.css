@@ -14,3 +14,27 @@ body {
   height: 100vh;
   z-index: 99;
 }
+
+#music-toggle-button{
+  display: inline-block;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.52rem 1.25rem;
+  color: rgb(220, 220, 220);
+  border: none;
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  bottom: 2vh;
+  right: 0;
+  transform: translateX(-50%);
+}
+
+#music-toggle-button:hover{
+  background: rgba(255, 255, 255, 0.05);
+  color: rgb(220, 220, 220);
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.fas {
+  color: rgba(255,255,255, 0.4)
+}
