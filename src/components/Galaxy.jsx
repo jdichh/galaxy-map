@@ -21,8 +21,8 @@ function Galaxy({ parameters, shape }) {
     const positions = new Float32Array(parameters.galaxyStarCount * 3);
     const colors = new Float32Array(parameters.galaxyStarCount * 3);
 
-    const color1 = new THREE.Color('#585858');
-    const color2 = new THREE.Color('#170030');
+    const blue = new THREE.Color('#00264C');
+    const orange = new THREE.Color('#3F2700');
 
     for (let i = 0; i < parameters.galaxyStarCount; i++) {
       const x = Math.random() * parameters.galaxyRadius;
@@ -47,7 +47,7 @@ function Galaxy({ parameters, shape }) {
       positions[i * 3 + 2] = Math.cos(branchAngle + spinAngle) * x + randomZ;
 
       const factor = Math.pow((positions[i * 3] / parameters.galaxyRadius + 1) / 2, 0.5);
-      const mixedColor = interpolateColor(color1, color2, factor);
+      const mixedColor = interpolateColor(blue, orange, factor);
 
       colors[i * 3] = mixedColor.r;
       colors[i * 3 + 1] = mixedColor.g;
@@ -77,8 +77,9 @@ function Galaxy({ parameters, shape }) {
       galaxyGeometryRef.current,
       galaxyMaterialRef.current
     );
+    galaxyRef.current.position.y = 2.5;
     scene.add(galaxyRef.current);
-
+   
     return () => {
       galaxyGeometryRef.current.dispose();
       galaxyMaterialRef.current.dispose();

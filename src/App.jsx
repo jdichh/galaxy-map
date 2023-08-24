@@ -8,10 +8,10 @@ import WebGL from "three/addons/capabilities/WebGL.js";
 import Galaxy from "./components/Galaxy";
 
 const App = () => {
-  const FOV = 25;
+  const FOV = 22;
   const NEAR_CLIP = 0.1;
-  const FAR_CLIP = 300;
-  const CAM_POSTIION = [30, 80, 40];
+  const FAR_CLIP = 400;
+  const CAM_POSTIION = [0, 50, 80];
 
   const BG_COLOR = "#000000";
 
@@ -36,7 +36,7 @@ const App = () => {
           }}
           gl={{
             toneMapping: THREE.ACESFilmicToneMapping,
-            toneMappingExposure: 1.3,
+            toneMappingExposure: 2,
             dpr: Math.min(window.devicePixelRatio, 2),
           }}
           style={{ background: BG_COLOR }}
