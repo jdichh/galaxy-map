@@ -30,6 +30,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (audio) {
       if (isMusicPlaying) {
+        audio.currentTime = 0;
         audio.play();
       } else {
         audio.pause();
